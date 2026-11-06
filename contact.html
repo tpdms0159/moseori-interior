@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상담 신청 — 모서리 공작소</title>
+<meta name="description" content="평수와 공간을 고르면 예상 공사비가 나옵니다. 실측 상담을 예약하세요.">
+<meta property="og:title" content="상담 신청 — 모서리 공작소">
+<meta property="og:description" content="평수와 공간을 고르면 예상 공사비가 나옵니다. 실측 상담을 예약하세요.">
+<meta property="og:image" content="assets/img/hero.jpg">
+<meta name="theme-color" content="#ede7dc">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@200..700&family=Newsreader:ital,opsz,wght@1,6..72,200..500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body data-page="contact">
+<div class="shutter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><span class="sh-label">모서리 공작소</span></div>
+<div class="ruler ruler-x" aria-hidden="true"><span class="mark"></span><span class="tag">0</span></div>
+<div class="ruler ruler-y" aria-hidden="true"><span class="mark"></span><span class="tag">0</span></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<header class="hd">
+  <a class="logo" href="index.html" data-label="모서리 공작소" aria-label="모서리 공작소 홈">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 3v13h13" fill="none" stroke="#8e3f26" stroke-width="1.2"/></svg>
+    <b>모서리 공작소</b><small>주거 리모델링 · 목공</small>
+  </a>
+  <button class="menu-btn" aria-label="메뉴" aria-expanded="false"><span></span><span></span></button>
+  <nav class="nav" aria-label="주 메뉴">
+    <a href="studio.html" data-label="작업실"><i>01</i>작업실</a>
+    <a href="works.html" data-label="고친 집들"><i>02</i>고친 집들</a>
+    <a href="contact.html" data-label="상담 신청" aria-current="page"><i>03</i>상담 신청</a>
+    <a class="cta" href="contact.html" data-label="상담 신청">실측 예약하기</a>
+  </nav>
+</header>
+
+<main>
+  <section class="sub-hero">
+    <span class="label" style="grid-column:1/-1">03 — 상담 신청</span>
+    <h1 class="h-xl split in"><span class="ln"><span>평수만 알면</span></span><span class="ln"><span><span class="it">대략</span> 그려져요</span></span></h1>
+    <p class="side rise in">슬라이더를 움직이면 도면이 커지고 줄어요. 고칠 공간을 고르면 예상 공사비와 기간이 함께 바뀝니다.</p>
+  </section>
+
+  <section class="estimator">
+    <div class="est-plan">
+      <svg viewBox="0 0 500 520" role="img" aria-label="선택한 평수에 맞춰 바뀌는 평면도">
+        <rect class="room" x="100" y="120" width="300" height="220"/>
+        <rect class="zone" data-z="거실"/><rect class="zone" data-z="주방"/><rect class="zone" data-z="욕실"/>
+        <rect class="zone" data-z="침실"/><rect class="zone" data-z="현관"/><rect class="zone" data-z="발코니"/><rect class="zone" data-z="붙박이장"/>
+        <text class="zt" data-z="거실" text-anchor="middle">거실</text><text class="zt" data-z="주방" text-anchor="middle">주방</text>
+        <text class="zt" data-z="욕실" text-anchor="middle">욕실</text><text class="zt" data-z="침실" text-anchor="middle">침실</text>
+        <text class="zt" data-z="현관" text-anchor="middle">현관</text><text class="zt" data-z="붙박이장" text-anchor="middle">수납</text>
+        <line class="dimline" id="dimW"/><line class="dimline" id="dimH"/>
+        <text id="txtW" text-anchor="middle"></text>
+        <text id="txtH" text-anchor="middle"></text>
+      </svg>
+    </div>
+    <div class="est-ctrl">
+      <div>
+        <h3>전용 면적</h3>
+        <div class="pyeong"><span class="v">32</span><small>평</small></div>
+        <input id="py" type="range" min="8" max="60" value="32" aria-label="평수">
+      </div>
+      <div>
+        <h3>범위</h3>
+        <div class="chips">
+          <label class="chip"><input type="radio" name="scope" value="full" checked><span>전체 리모델링</span></label>
+          <label class="chip"><input type="radio" name="scope" value="part"><span>부분 시공</span></label>
+        </div>
+      </div>
+      <div>
+        <h3>고칠 공간 (부분 시공일 때)</h3>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="room" value="주방" checked><span>주방</span></label>
+          <label class="chip"><input type="checkbox" name="room" value="욕실" checked><span>욕실</span></label>
+          <label class="chip"><input type="checkbox" name="room" value="거실"><span>거실</span></label>
+          <label class="chip"><input type="checkbox" name="room" value="침실"><span>침실</span></label>
+          <label class="chip"><input type="checkbox" name="room" value="현관"><span>현관</span></label>
+          <label class="chip"><input type="checkbox" name="room" value="발코니"><span>발코니 확장</span></label>
+          <label class="chip"><input type="checkbox" name="room" value="붙박이장"><span>맞춤 수납</span></label>
+        </div>
+      </div>
+      <div class="est-out" aria-live="polite">
+        <div>예상 공사비<b class="cost">—</b></div>
+        <div>예상 기간<b class="weeks">—</b></div>
+        <p>* 2026년 성수 작업실 평균 단가 기준. 실측 후 확정 견적은 보통 이 범위 안에서 나옵니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="form-sec" id="form">
+    <div class="form-side">
+      <span class="label">실측 예약</span>
+      <h2 class="h-l split" style="margin-top:16px"><span class="ln"><span>대표 목수가</span></span><span class="ln"><span>직접 갑니다</span></span></h2>
+      <dl>
+        <div><dt>전화</dt><dd>02-000-0000</dd></div>
+        <div><dt>카카오톡</dt><dd>@모서리공작소</dd></div>
+        <div><dt>답변</dt><dd>평일 하루 안에</dd></div>
+        <div><dt>실측 비용</dt><dd>무료 (서울·경기)</dd></div>
+      </dl>
+    </div>
+    <form class="consult" novalidate>
+      <div class="field"><label for="f-name">성함</label><input id="f-name" name="name" required autocomplete="name"><span class="bar"></span></div>
+      <div class="field"><label for="f-tel">연락처</label><input id="f-tel" name="tel" type="tel" required autocomplete="tel" placeholder="010-0000-0000"><span class="bar"></span></div>
+      <div class="field"><label for="f-addr">공사할 곳 (동까지)</label><input id="f-addr" name="addr" placeholder="예: 마포구 망원동"><span class="bar"></span></div>
+      <div class="field"><label for="f-when">희망 시작 시기</label>
+        <select id="f-when" name="when"><option>1개월 안에</option><option selected>2–3개월 뒤</option><option>6개월 뒤</option><option>아직 미정</option></select><span class="bar"></span></div>
+      <div class="field full"><label for="f-summary">계산기 결과 (자동 입력)</label><input id="f-summary" name="summary" readonly><span class="bar"></span></div>
+      <div class="field full"><label for="f-msg">꼭 바꾸고 싶은 것</label><textarea id="f-msg" name="msg" placeholder="예: 주방이 너무 어두워요. 아이 방에 수납이 부족해요."></textarea><span class="bar"></span></div>
+      <label class="agree"><input type="checkbox" required> 상담을 위한 개인정보 수집에 동의합니다.</label>
+      <button class="btn" type="submit">실측 예약 보내기 <span class="arr"></span></button>
+      <p class="form-done" aria-live="polite"></p>
+      <div class="stamp" aria-hidden="true"><div><b>접수</b><small>모서리 공작소</small></div></div>
+    </form>
+  </section>
+
+  <section class="faq">
+    <h2 class="h-l split"><span class="ln"><span>자주 묻는 것</span></span></h2>
+    <div class="faq-list">
+      <details><summary>살면서 공사할 수 있나요?</summary><p>부분 시공은 가능해요. 욕실은 9일, 주방은 2주 정도 사용이 어렵습니다. 전체 리모델링은 짐 보관과 임시 거처를 함께 안내해 드려요.</p></details>
+      <details><summary>견적이 나중에 늘어나지 않나요?</summary><p>철거 후 숨은 누수나 배관 문제가 나오면 사진과 함께 먼저 알려드리고, 동의하신 경우에만 추가합니다. 지난 3년간 94%의 현장이 처음 견적 그대로 끝났어요.</p></details>
+      <details><summary>관리사무소, 이웃 동의는요?</summary><p>공사 신고와 엘리베이터 보양, 이웃 동의서까지 저희가 대신 받습니다.</p></details>
+      <details><summary>가구만 따로 맞출 수도 있나요?</summary><p>네. 붙박이장, 신발장, 책장처럼 목공 가구만 따로 의뢰하셔도 실측부터 설치까지 똑같이 진행해요.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="ft">
+  <p class="big"><a href="contact.html" data-label="상담 신청"><span>모서리부터</span></a><br><a href="contact.html" data-label="상담 신청"><span class="it">같이 고쳐요 &rarr;</span></a></p>
+  <div class="ft-cols">
+    <div><h4>작업실</h4>서울 성동구 성수이로 7길 24, 2층<br>화–토 10:00–18:00</div>
+    <div><h4>연락</h4><a href="tel:0200000000">02-000-0000</a><br><a href="mailto:hello@moseori.studio">hello@moseori.studio</a></div>
+    <div><h4>둘러보기</h4><a href="studio.html">작업실</a><br><a href="works.html">고친 집들</a><br><a href="contact.html">상담 신청</a></div>
+    <div><h4>기록</h4>실내건축공사업 면허 제0000호<br>하자보수 2년 보증</div>
+  </div>
+  <div class="ft-bottom">
+    <span>&copy; <span class="yr">2026</span> 모서리 공작소 — 홈페이지 제작 포트폴리오용 가상 브랜드입니다.</span>
+    <span>사진: Higgsfield 생성 이미지</span>
+  </div>
+</footer>
+
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
