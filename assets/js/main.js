@@ -62,6 +62,9 @@
     $(".menu-btn").setAttribute("aria-expanded", on);
   });
 
+  /* 터치 기기에서는 마우스 안내 문구를 바꾼다 */
+  if (!matchMedia("(hover: hover)").matches) $$("[data-touch]").forEach((el) => (el.textContent = el.dataset.touch));
+
   /* ---------- 2. 줄자 커서 ---------- */
   if (fine && $(".ruler-x")) {
     document.body.classList.add("has-cursor");
@@ -90,12 +93,32 @@
   }
 
   /* ---------- 등장 옵저버 ---------- */
+  // clip-path로 완전히 가린 요소는 Chrome이 '보이지 않음'으로 판정하므로,
+  // 그런 요소는 가려지지 않은 부모(proxy)를 대신 관찰해서 class를 붙인다.
+  const proxyMap = new Map();
   const io = new IntersectionObserver((ents) => {
     ents.forEach((en) => {
-      if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+      if (!en.isIntersecting) return;
+      en.target.classList.add("in");
+      io.unobserve(en.target);
     });
-  }, { threshold: 0.18, rootMargin: "0px 0px -6% 0px" });
-  $$(".rise, .split, .ph.reveal, .pencil, .sign, .corner-card, [data-count]").forEach((el) => io.observe(el));
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  // 부모가 화면보다 큰 섹션일 수 있으므로 proxy는 '조금이라도 보이면' 바로 드러낸다
+  const pio = new IntersectionObserver((ents) => {
+    ents.forEach((en) => {
+      if (!en.isIntersecting) return;
+      proxyMap.get(en.target).forEach((t) => t.classList.add("in"));
+      pio.unobserve(en.target);
+    });
+  }, { threshold: 0, rootMargin: "0px 0px -12% 0px" });
+  const watch = (el) => {
+    if (el.matches(".ph.reveal")) {
+      const p = el.parentElement;
+      if (!proxyMap.has(p)) { proxyMap.set(p, []); pio.observe(p); }
+      proxyMap.get(p).push(el);
+    } else io.observe(el);
+  };
+  $$(".rise, .split, .ph.reveal, .pencil, .sign, .corner-card, [data-count]").forEach(watch);
 
   /* 숫자 카운트 */
   const countIO = new IntersectionObserver((ents) => {
@@ -307,7 +330,7 @@
         if (p < 1) requestAnimationFrame(go);
       };
       setTimeout(() => requestAnimationFrame(go), 400);
-    }, { threshold: 0.6 });
+    }, { threshold: 0.35 });
     demo.observe(ba);
   }
 
@@ -425,9 +448,10 @@
   if (est) {
     const range = $("#py", est), out = $(".pyeong .v", est);
     const rect = $(".room", est), dW = $("#dimW", est), dH = $("#dimH", est), tW = $("#txtW", est), tH = $("#txtH", est);
+    // 겹치거나 비는 곳 없이 평면을 정확히 나누는 구역 (x, y, w, h 비율)
     const ZONES = {
-      거실: [0.38, 0.0, 0.62, 0.55], 주방: [0.0, 0.0, 0.38, 0.4], 욕실: [0.0, 0.4, 0.22, 0.28],
-      침실: [0.55, 0.55, 0.45, 0.45], 현관: [0.0, 0.82, 0.22, 0.18], 발코니: [0.38, 0.0, 0.62, 0.1], 붙박이장: [0.22, 0.55, 0.33, 0.45],
+      발코니: [0.38, 0, 0.62, 0.1], 주방: [0, 0, 0.38, 0.42], 거실: [0.38, 0.1, 0.62, 0.48],
+      욕실: [0, 0.42, 0.22, 0.3], 현관: [0, 0.72, 0.22, 0.28], 붙박이장: [0.22, 0.42, 0.16, 0.58], 침실: [0.38, 0.58, 0.62, 0.42],
     };
     const COST = { 거실: [500, 800], 주방: [900, 1500], 욕실: [650, 950], 침실: [350, 600], 현관: [180, 320], 발코니: [400, 700], 붙박이장: [300, 650] };
     const S = 26; // px per m
